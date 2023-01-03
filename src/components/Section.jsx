@@ -1,18 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 
-const Section = ({ title, description, backgroundImg, leftBtnText, rightBtnText}) => {
+const Section = ({
+  title,
+  description,
+  backgroundImg,
+  leftBtnText,
+  rightBtnText,
+}) => {
   return (
     <Wrap image={backgroundImg}>
-      <ItemText>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </ItemText>
+      <Fade bottom>
+        <ItemText>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </ItemText>
+      </Fade>
       <Buttons>
-        <ButtonGroup>
-          <LeftButton>{leftBtnText}</LeftButton>
-          {rightBtnText && <RightButton>{rightBtnText}</RightButton>}
-        </ButtonGroup>
+        <Fade bottom>
+          <ButtonGroup>
+            <LeftButton>{leftBtnText}</LeftButton>
+            {rightBtnText && <RightButton>{rightBtnText}</RightButton>}
+          </ButtonGroup>
+        </Fade>
         <DownArrow src="/images/down-arrow.svg" />
       </Buttons>
     </Wrap>
@@ -24,7 +35,7 @@ export default Section;
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
-  background-image: url("/images/${props=>`${props.image}`}");
+  background-image: url("/images/${(props) => `${props.image}`}");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -45,7 +56,7 @@ const ButtonGroup = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
